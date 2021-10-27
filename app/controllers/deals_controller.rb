@@ -5,6 +5,8 @@ class DealsController < ApplicationController
     @deals = Deal.all
   end
 
+  def show; end
+
   def new
     @deal = Deal.new
   end
