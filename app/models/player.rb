@@ -1,10 +1,10 @@
 class Player < ApplicationRecord
-  has_many :deals
-  has_many :users
-
-  validate :name, presence: true, uniqueness: true
-  validate :position, presence: true
-  validate :position, inclusion: ['goleiro', 'lateral esquerdo', 'lateral direito', 'zagueiro', 'volante', 'meia', 'atacante']
-  validate :price, presence: true, numericality: { greather_than: 0}
-  validate :age, presence: true, numericality: { greather_than: 0}
+<<<<<<< HEAD
+=======
+  validates :name, presence: true, uniqueness: true
+  validates :position, presence: true
+  validates :position, inclusion: ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante']
+  validates :price, presence: true, numericality: { greather_than: 0}
+  validates :age, presence: true, numericality: { greather_than: 0}
+>>>>>>> fe84aa5de5b28dab063eebb85f679e3acb981b4a
 end
