@@ -1,0 +1,11 @@
+<h1>Jogadores</h1>
+<ul>
+  <% @players.each do |player| %>
+    <li>
+      <h4><%= link_to player.name, player_path(player) %></h4>
+      <p><%= player.price %></p>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Novo jogador', new_player_path %>
