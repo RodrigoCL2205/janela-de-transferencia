@@ -12,6 +12,17 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%# NavBAR %>
+    <%= render 'shared/navbar', class: "bg-light shadow" %>
+
+    <%= render 'shared/banner', test: "Janela de Transferências", url: image_path('gramado.jpg') %>
+
+    <div class="container">
+      <%= yield %>
+    </div>
+
+    <%# Footer %>
+    <%= render 'shared/footer' %>
+
   </body>
 </html>
