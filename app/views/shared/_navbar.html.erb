@@ -1,5 +1,5 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon shadow">
+  <%= link_to root_path, class: "navbar-brand" do %>
     <%= image_tag "logo-mercado-bola.png" %>
   <% end %>
 
@@ -12,13 +12,27 @@
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
+          <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
+        <li class="nav-item active">
+          <%= link_to "Jogadores à venda", players_path, class: "nav-link" %>
         </li>
+        <li class="nav-item active">
+          <%= link_to "Carrinho", "#", class: "nav-link" %>
+        </li>
+        <%# Se user = manager, mostrar menu de gerência dos jogadores %>
+        <% if current_user.manager == true %>
+          <li class="nav-item dropdown">
+          <%= link_to "Administrar Jogadores", "#", class: "nav-link active dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Adicionar Jogador", new_player_path, class: "dropdown-item" %>
+            <%= link_to "Editar Jogador", "#", class: "dropdown-item" %>
+            <%= link_to "Excluir Jogador", "#", class: "dropdown-item" %>
+          </div>
+        </li>
+        <% end %>
         <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <%= link_to "Meu cadastro", "#", class: "nav-link active dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Action", "#", class: "dropdown-item" %>
             <%= link_to "Another action", "#", class: "dropdown-item" %>
@@ -26,7 +40,7 @@
           </div>
         </li>
       <% else %>
-        <li class="nav-item">
+        <li class="nav-item active">
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
       <% end %>
