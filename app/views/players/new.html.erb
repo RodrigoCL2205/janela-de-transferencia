@@ -1,7 +1,9 @@
-<%= simple_form_for (@player) do |f| %>
-  <%= f.input :name, label: 'Nome do jogador' %>
-  <%= f.input :age, label: 'Idade' %>
-  <%= f.input :position, label: 'Posição de campo', collection: ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante'] %>
-  <%= f.input :price, label: 'Preço' %>
-  <%= f.submit 'Criar jogador' %>
-<% end %>
+<div class="modal-body">
+  <%= simple_form_for (@player) do |f| %>
+    <%= f.input :name, label: 'Nome do jogador' %>
+    <%= f.input :age, label: 'Idade' %>
+    <%= f.input :position, label: 'Posição de campo', collection: ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante'] %>
+    <%= f.input :price, label: 'Preço' %>
+    <%= f.submit 'Criar jogador' %>
+  <% end %>
+</div>
