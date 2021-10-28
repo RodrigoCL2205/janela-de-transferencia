@@ -18,7 +18,7 @@
           <%= link_to "Jogadores à venda", players_path, class: "nav-link" %>
         </li>
         <li class="nav-item active">
-          <%= link_to "Carrinho", "#", class: "nav-link" %>
+          <%= link_to "Carrinho",cart_path, class: "nav-link" %>
         </li>
         <%# Se user = manager, mostrar menu de gerência dos jogadores %>
         <% if current_user.manager == true %>
