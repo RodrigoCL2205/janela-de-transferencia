@@ -1,5 +1,6 @@
 class DealsController < ApplicationController
-  before_action :set_user, only: [:create, :update]
+  before_action :cart, only: [:sale]
+  before_action :set_player, only: [:create]
 
   def index
     @deals = Deal.all
@@ -12,36 +13,36 @@ class DealsController < ApplicationController
   end
 
   def create
-    @deal = Deal.new(deal_params)
+    @deal = Deal.new
+    @deal.player = @player
+    @deal.user = current_user
     if @deal.save
-      redirect_to user_path(@user)
-    else
-      render :new
+      redirect_to root_path
     end
   end
 
   def edit; end
 
-  def update
-    @deal.update(deal_params)
-    if @deal.save
-      redirect_to user_path
-    else
-      render :edit
-    end
+  def sale
+    @deals.each { |deal| deal.update(completed: true) }
+    redirect_to root_path
   end
 
   def destroy
     @deal.destroy
   end
 
+  def cart
+    @deals = Deal.where(user_id: current_user, completed: false)
+  end
+
   private
 
-  def set_user
-    @user = current_user
+  def set_player
+    @player = Player.find(params[:player_id])
   end
 
   def deal_params
-    params.require(:deal).permit(:completed, :player_id, :user_id)
+    params.require(:deal).permit(:completed)
   end
 end
