@@ -5,11 +5,12 @@
 <ul class="list-group">
 
   <% @players.each do |player| %>
+
     <li class="list-group-item d-flex justify-content-between align-items-center">
 
       <div class="d-flex">
         <div>
-          <%= image_tag("pele.jpg", size: "40x40", class: "rounded-circle")  %>
+          <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill, size: "40x40", class: "rounded-circle") : image_tag("player.png", size: "40x40", class: "rounded-circle") %>
         </div>
         <div>
           <h4><%= link_to player.name, player_path(player) %></h4>
@@ -21,7 +22,7 @@
       </div>
 
       <div class="align-self-end">
-        <%= link_to "Comprar", "#", class: "badge badge-success" %>
+          <%= link_to 'Comprar', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
       </div>
     </li>
   <% end %>

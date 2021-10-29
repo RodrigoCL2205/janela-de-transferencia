@@ -32,7 +32,7 @@ class PlayersController < ApplicationController
   private
 
   def player_params
-    params.require(:player).permit(:name, :age, :position, :price)
+    params.require(:player).permit(:name, :age, :position, :price, :photo)
   end
 
   def find
