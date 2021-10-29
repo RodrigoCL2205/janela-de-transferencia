@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   patch "/sale", to: "deals#sale", as: "sale"
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users, only: [:index, :update, :destroy]
 end
