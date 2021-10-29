@@ -2,28 +2,21 @@
 
 <%# Lista personalizada  %>
 
-<ul class="list-group">
-
+<div class="row justify-content-center">
   <% @players.each do |player| %>
-
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-
-      <div class="d-flex">
+    <div class="card-trip">
+      <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill) : image_tag("player.png") %>
+      <div class="card-trip-infos">
         <div>
-          <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill, size: "40x40", class: "rounded-circle") : image_tag("player.png", size: "40x40", class: "rounded-circle") %>
+          <h2><%= player.name %></h2>
+          <p>Idade: <%= player.age.to_i %></p>
+          <p>Posição: <%= player.position %></p>
         </div>
-        <div>
-          <h4><%= link_to player.name, player_path(player) %></h4>
-        </div>
-      </div>
-
-      <div>
-        <p><%= player.price %></p>
-      </div>
-
-      <div class="align-self-end">
+        <div class="align-self-end">
+          <h2 class="card-trip-pricing">R$ <%= number_to_human(player.price.to_i) %></h2>
           <%= link_to 'Comprar', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
       </div>
-    </li>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
