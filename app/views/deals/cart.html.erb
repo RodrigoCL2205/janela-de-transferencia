@@ -1,13 +1,33 @@
-<h1>Cart</h1>
+<h1>Carrinho de Compras</h1>
 
-<% @deals.each do |d| %>
-  <ul>
-    <li>
-      <h4><%= d.player.name %></h4>
-      <p><%= d.player.price %></p>
-      
-    </li>
-  </ul>
-<% end %>
-
-<%= link_to "Finalizar compra", sale_path, method: "patch" %>
+<div class="col-lg-12" style="text-align: right;">
+    <%= link_to "Finalizar compra", sale_path, method: "patch", class: 'btn btn-primary' %>
+</div>
+<br>
+<div class="container">
+  <table class="table table-hover">
+    <thead class="thead-light">
+      <tr>
+        <th>Jogador</th>
+        <th>Posição</th>
+        <th>Valor</th>
+        <th >Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% soma = 0 %>
+      <% @deals.each do |d| %>
+        <tr>
+          <td><%= d.player.name %></td>
+          <td><%= d.player.position %></td>
+          <td><%= number_to_human(d.player.price.to_i) %></td>
+          <td>
+            <%= link_to 'Excluir', deal_path(d), method: :delete, class: 'btn btn-danger btn-sm', data: { confirm: 'Confirma exclusão?'}%>
+          </td>
+        </tr>
+        <% soma += d.player.price %>
+      <% end %>
+      <tr><td><strong>Total (R$)</strong></td><td></td><td><strong><%= number_to_human(soma) %></strong></td></tr>
+    </tbody>
+  </table>
+</div>
