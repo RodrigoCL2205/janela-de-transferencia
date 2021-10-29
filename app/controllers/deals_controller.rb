@@ -29,7 +29,9 @@ class DealsController < ApplicationController
   end
 
   def destroy
+    @deal = Deal.find(params[:id])
     @deal.destroy
+    redirect_to cart_path
   end
 
   def cart
