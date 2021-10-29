@@ -3,5 +3,6 @@
   <%= f.input :age, label: 'Idade' %>
   <%= f.input :position, label: 'Posição de campo', collection: ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante'] %>
   <%= f.input :price, label: 'Preço' %>
+  <%= f.input :photo, as: :file %>
   <%= f.submit 'Criar jogador' %>
 <% end %>

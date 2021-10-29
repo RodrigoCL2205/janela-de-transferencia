@@ -2,7 +2,7 @@
 <p><%= @player.age %></p>
 <p><%= @player.position %></p>
 <p><%= @player.price %></p>
-
+<%= link_to 'Comprar', player_deals_path(@player, current_user), method: "post" %>
 <%= link_to 'Voltar', players_path %>
 <br>
 <%= link_to 'Editar jogador', edit_player_path(@player)  %>

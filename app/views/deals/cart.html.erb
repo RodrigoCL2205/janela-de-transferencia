@@ -1,0 +1,13 @@
+<h1>Cart</h1>
+
+<% @deals.each do |d| %>
+  <ul>
+    <li>
+      <h4><%= d.player.name %></h4>
+      <p><%= d.player.price %></p>
+      
+    </li>
+  </ul>
+<% end %>
+
+<%= link_to "Finalizar compra", sale_path, method: "patch" %>
