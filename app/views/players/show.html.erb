@@ -1,8 +1,28 @@
-<h2><%= @player.name %></h2>
-<p><%= @player.age %></p>
-<p><%= @player.position %></p>
-<p><%= @player.price %></p>
-<%= link_to 'Comprar', player_deals_path(@player, current_user), method: "post" %>
-<%= link_to 'Voltar', players_path %>
-<br>
-<%= link_to 'Editar jogador', edit_player_path(@player)  %>
+<div class="container justify-content-center">
+    <div class="card-show">
+      <div class="row justify-content-center">
+        <div class="col">
+          <div class="flex-column d-flex align-items-start">
+            <div class="card-show-info">
+              <h2><%= @player.name %></h2>
+              <p>Idade: <%= @player.age.to_i %></p>
+              <p>Posição: <%= @player.position %></p>
+              <p>Preço: <%= @player.price %></p>
+            </div>
+          </div>
+        </div>
+        <div class="col justify-content-end">
+          <%= cl_image_tag @player.photo.key, width: 300, height: 250, crop: :fill %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <%= link_to 'Comprar', player_deals_path(@player, current_user), method: "post" %>
+      <%= link_to 'Voltar', players_path %>
+    </div>
+    <br>
+    <%= link_to 'Editar jogador', edit_player_path(@player)  %>
+  </div>
+</div>
+
+
