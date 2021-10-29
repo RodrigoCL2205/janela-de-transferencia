@@ -1,0 +1,41 @@
+<h1>Lista de Usuários</h1>
+
+<table class="table text-center table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Categoria</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% index = 0 %>
+    <% @users.each do |user| %>
+      <% index = index + 1 %>
+      <tr>
+        <th scope="row"><%= index %></th>
+        <td><%= user.email %></td>
+        <td><%= user.manager == true ? "Gerente" : "Usuário" %></td>
+
+        <%# Don't show de buttons Manager and delete for current user %>
+        <% if current_user == user %>
+        <td>Seu cadastro</td>
+        <td></td>
+        <% else %>
+
+          <%# If / Else para mostrar botão "alterar para  gerente" ou "alterar para usuário" %>
+          <% if user.manager == false %>
+            <td><%= link_to 'Alterar para Gerente', user_path(user), method: "patch", class: "btn btn-success" %></td>
+          <% else %>
+            <td><%= link_to 'Alterar para Usuário', user_path(user), method: "patch", class: "btn btn-success" %></td>
+          <% end %>
+
+          <td><%= link_to 'Excluir', user_path(user) , method: :delete, data: { confirm: "Deseja confirmar a exlusão?" }, class: "btn btn-danger" %></td>
+        <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
