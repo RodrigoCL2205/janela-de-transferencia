@@ -14,20 +14,21 @@
         <li class="nav-item active">
           <%= link_to "Home", root_path, class: "nav-link" %>
         </li>
-        <li class="nav-item active">
-          <%= link_to "Jogadores à venda", players_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item active">
-          <%= link_to "Carrinho",cart_path, class: "nav-link" %>
-        </li>
+        <% if current_user.manager == false %>
+          <li class="nav-item active">
+            <%= link_to "Jogadores à venda", players_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item active">
+            <%= link_to "Carrinho",cart_path, class: "nav-link" %>
+          </li>
+        <% end %>
         <%# Se user = manager, mostrar menu de gerência dos jogadores %>
         <% if current_user.manager == true %>
           <li class="nav-item dropdown">
           <%= link_to "Administrar Jogadores", "#", class: "nav-link active dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
             <%= link_to "Adicionar Jogador", new_player_path, class: "dropdown-item" %>
-            <%= link_to "Editar Jogador", "#", class: "dropdown-item" %>
-            <%= link_to "Excluir Jogador", "#", class: "dropdown-item" %>
+            <%= link_to "Editar Jogadores", players_path, class: "dropdown-item" %>
           </div>
         </li>
         <% end %>

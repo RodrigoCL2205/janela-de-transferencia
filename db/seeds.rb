@@ -16,7 +16,7 @@ position = ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volan
   player = Player.create(
     name: Faker::Sports::Football.player,
     position: position[rand(0..6)],
-    price: rand(1..20)*1000,
+    price: rand(5..50)*1_000_000,
     age: rand(18..60)
   )
   puts "Included #{player.name}"
