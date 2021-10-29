@@ -5,3 +5,21 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts 'Cleaning players database...'
+Player.destroy_all
+puts 'Starting players seed...'
+
+position = ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante']
+
+50.times do
+  player = Player.create(
+    name: Faker::Sports::Football.player,
+    position: position[rand(0..6)],
+    price: rand(1..20)*1000,
+    age: rand(18..60)
+  )
+  puts "Included #{player.name}"
+end
+
+puts "Seed completed succesfully"
