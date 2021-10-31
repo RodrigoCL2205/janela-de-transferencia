@@ -1,6 +1,17 @@
 <div class="apresentacao">
-  <h2>Bem-vindo à Janela de Transferência</h2>
-
-  <p>Mussum Ipsum, cacilds vidis litro abertis. In elementis mé pra quem é amistosis quis leo. Aenean aliquam molestie leo, vitae iaculis nisl. Casamentiss faiz malandris se pirulitá. Interagi no mé, cursus quis, vehicula ac nisi.</p>
-  <p>Mussum Ipsum, cacilds vidis litro abertis. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. A ordem dos tratores não altera o pão duris. Todo mundo vê os porris que eu tomo, mas ninguém vê os tombis que eu levo! Si num tem leite então bota uma pinga aí cumpadi!</p>
+  <h2><strong>Bem-vindo à Janela de Transferência</strong></h2>
+  <h4><strong>Monte o seu time dos sonhos com os melhores jogadores de todos os tempos!</strong></h5>
+  <br>
+  <h5><strong>⭐Confira os jogadores mais valorizados⭐</strong></h4>
 </div>
+<br>
+<% @players.each do |player| %>
+  <div class="card-product">
+    <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill) : image_tag("player.png") %>
+    <div class="card-product-infos">
+      <h2><%= player.name %></h2>
+      <p><%= player.position %>. Idade: <%= player.age.round %> anos. <strong>R$ <%= number_to_human(player.price) %></strong>. Classificação <%= '⭐' * 5 %></p>
+    </div>
+  </div>
+  <br>
+<% end %>
