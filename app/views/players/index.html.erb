@@ -3,7 +3,20 @@
 
 <%# Lista personalizada  %>
 
-
+<%# Pg Search - Form %>
+<div class="search-form row d-flex justify-content-center">
+  <div class="form-inline">
+  <%= form_tag players_path, method: :get do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      style: "width: 300px",
+      placeholder: "Filtre por nome ou posição..."
+    %>
+    <%= submit_tag "Busca", class: "btn btn-primary" %>
+  <% end %>
+</div>
+</div>
 <div class="row justify-content-center cards-player">
   <% @players.each do |player| %>
     <div class="card-player justify-content-between">

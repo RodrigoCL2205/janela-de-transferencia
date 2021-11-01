@@ -8,4 +8,13 @@ class Player < ApplicationRecord
   validates :age, presence: true, numericality: { greather_than: 0}
 
   has_one_attached :photo
+
+  # PG Search
+  include PgSearch::Model
+  pg_search_scope :search_by_name_and_position_order_by_price,
+    against: [ :name, :position ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    },
+     order_within_rank: "players.price DESC"
 end
