@@ -25,7 +25,7 @@ class DealsController < ApplicationController
 
   def sale
     @deals.each { |deal| deal.update(completed: true) }
-    redirect_to root_path
+    redirect_to root_path, notice: "Compra realizada com sucesso."
   end
 
   def destroy
