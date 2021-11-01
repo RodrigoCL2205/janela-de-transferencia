@@ -7,7 +7,11 @@
 <br>
 <% @players.each do |player| %>
   <div class="card-product">
-    <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill) : image_tag("player.png") %>
+     <% if player.image_url.nil? %>
+        <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :thumb, gravity: :face) : image_tag("player.png") %>
+      <% else %>
+        <%= image_tag(player.image_url, crop: :fill) %>
+      <% end %>
     <div class="card-product-infos">
       <h2><%= player.name %></h2>
       <p><%= player.position %>. Idade: <%= player.age.round %> anos. <strong>R$ <%= number_to_human(player.price) %></strong>. Classificação <%= '⭐' * 5 %></p>
