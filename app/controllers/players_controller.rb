@@ -2,7 +2,11 @@ class PlayersController < ApplicationController
   before_action :find, only: [:show, :edit, :update]
 
   def index
-    @players = Player.all.order('price DESC')
+    if params[:query].present?
+      @players = Player.search_by_name_and_position_order_by_price(params[:query])
+    else
+      @players = Player.all.order('price DESC')
+    end
   end
 
   def new
