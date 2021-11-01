@@ -2,7 +2,7 @@ class PlayersController < ApplicationController
   before_action :find, only: [:show, :edit, :update]
 
   def index
-    @players = Player.all
+    @players = Player.all.order('price DESC')
   end
 
   def new

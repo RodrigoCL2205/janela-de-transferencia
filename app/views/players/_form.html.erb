@@ -4,7 +4,10 @@
         <%= f.input :name, label: 'Nome do jogador' %>
       </div>
       <div class='form-group'>
-        <%= f.input :position, label: 'Posição de campo', collection: ['Goleiro', 'Lateral esquerdo', 'Lateral direito', 'Zagueiro', 'Volante', 'Meia', 'Atacante'] %>
+        <%= f.input :position, label: 'Posição de campo',
+                     collection: ['Goleiro', 'Líbero', 'Lateral Esq.', 'Lateral Dir.',
+                                  'Zagueiro', 'Volante', 'Meia Central', 'Meia Ofensivo', 'Meia Direita',
+                                  'Meia Esquerda', 'Ponta Direita', 'Ponta Esquerda', 'Atacante', 'Centroavante'] %>
       </div>
       <div class='row'>
         <div class='form-group col-6'>

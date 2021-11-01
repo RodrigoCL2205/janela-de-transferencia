@@ -1,21 +1,25 @@
-<h2>Jogadores à Venda</h2>
+<h2>Lista de jogadores à venda</h2>
+<p>Olá, <%= current_user.email %>! Selecione o jogador que deseja comprar:</p>
 
 <%# Lista personalizada  %>
 
-<div class="row justify-content-center">
+
+<div class="row justify-content-center cards-product">
   <% @players.each do |player| %>
-    <div class="card-trip">
-      <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :fill) : image_tag("player.png") %>
-      <div class="card-trip-infos">
-        <div>
-          <h2><%= player.name %></h2>
-          <p>Idade: <%= player.age.to_i %></p>
-          <p>Posição: <%= player.position %></p>
-        </div>
+    <div class="card-product justify-content-between">
+      <% if player.image_url.nil? %>
+        <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :thumb, gravity: :face) : image_tag("player.png") %>
+      <% else %>
+        <%= image_tag(player.image_url, crop: :fill) %>
+      <% end %>
+      <div class="card-product-infos justify-content-end text-end">
+        <h2><%= link_to player_path(player) do %><%= player.name %><% end %></h2>
+        <p>Idade: <%= player.age.to_i %></p>
+            <p>Posição: <%= player.position %></p>
         <div class="align-self-end">
-          <h2 class="card-trip-pricing">R$ <%= number_to_human(player.price.to_i) %></h2>
-          <%= link_to 'Comprar', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
-      </div>
+          <h2 class="card-trip-pricing">€ <%= number_to_human(player.price.to_i) %></h2>
+          <%= link_to 'Adicionar ao carrinho', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
+        </div>
       </div>
     </div>
   <% end %>
