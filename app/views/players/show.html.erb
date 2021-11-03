@@ -1,8 +1,36 @@
-<h2><%= @player.name %></h2>
-<p><%= @player.age %></p>
-<p><%= @player.position %></p>
-<p><%= @player.price %></p>
-<%= link_to 'Comprar', player_deals_path(@player, current_user), method: "post" %>
-<%= link_to 'Voltar', players_path %>
-<br>
-<%= link_to 'Editar jogador', edit_player_path(@player)  %>
+<%# <h2><%= @player.name </h2>
+<p><%= @player.age </p>
+<p><%= @player.position </p>
+<p><%= @player.price </p> %>
+
+<div class="card justify-content-between p-5 m-4" style="height: auto; width: 40rem;">
+  <div class="card-img-top card-show style="height: auto; width: 300px;">
+    <%= link_to player_path(@player) do %>
+      <% if @player.image_url.nil? %>
+        <%=  @player.photo.attached? ? (cl_image_tag @player.photo.key, crop: :fill) : image_tag("#{@player.name}.png") %>
+      <% else %>
+        <%= image_tag(@player.image_url, crop: :fill) %>
+      <% end %>
+    <% end %>
+  </div>
+    <div class="card-body">
+      <div class="card-text justify-content-end">
+        <h3><%= link_to player_path(@player) do %><%= @player.name %><% end %></h2>
+        <p>Idade: <%= @player.age.to_i %></p>
+            <p>Posição: <%= @player.position %></p>
+        <div class="align-self-end">
+          <h3 class="card-trip-pricing">€ <%= number_to_human(@player.price.to_i) %></h2>
+          <% if current_user.manager %>
+            <%= link_to 'Editar jogador', edit_player_path(@player), class: "badge badge-success" %>
+          <% else %>
+            <%= link_to 'Adicionar ao carrinho', player_deals_path(@player, current_user), method: "post", class: "badge badge-success" %>
+            <br>
+            <%= link_to 'Voltar', players_path, class: "badge badge-success" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
