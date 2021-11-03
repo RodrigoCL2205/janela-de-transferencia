@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: transparent;
+  background: rgba(244, 244, 244, 0.2);
   height: 60px;
   position: fixed;
   width: 100%;
@@ -10,8 +10,8 @@
 
 .navbar-lewagon-white {
   color: black;
-  background-color: white;
-  background: #F4F4F4;
+  background-color: #f4f4f4;
+  background: #f4f4f4;
   box-shadow: 1px 1px 1px;
   z-index: 10;
 }
