@@ -17,7 +17,7 @@ class DealsController < ApplicationController
     @deal.player = @player
     @deal.user = current_user
     if @deal.save
-      redirect_to players_path
+      redirect_to players_path, notice: "Jogador adicionado ao carrinho."
     end
   end
 
