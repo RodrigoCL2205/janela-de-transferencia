@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :players, except: :destroy do
+  resources :players do
     resources :deals, except: :destroy
   end
   get "/cart", to: "deals#cart"

@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :find, only: [:show, :edit, :update]
+  before_action :find, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:query].present?
@@ -31,6 +31,11 @@ class PlayersController < ApplicationController
   def update
     @player.update(player_params)
     redirect_to player_path(@player)
+  end
+
+  def destroy
+    @player.destroy
+    redirect_to players_path
   end
 
   private

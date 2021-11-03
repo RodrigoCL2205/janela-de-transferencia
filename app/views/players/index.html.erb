@@ -33,7 +33,29 @@
             <p>Posição: <%= player.position %></p>
         <div class="align-self-end">
           <h3 class="card-trip-pricing">€ <%= number_to_human(player.price.to_i) %></h2>
-          <%= link_to 'Adicionar ao carrinho', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
+          <%# Check if the user is a manager or normal user.  %>
+          <% if current_user.manager == false %>
+            <%# Check if the player has some deal %>
+            <% if player.deals == [] %>
+              <%= link_to 'Adicionar ao carrinho', player_deals_path(player, current_user), method: "post", class: "badge badge-success" %>
+            <% else %>
+              <% if player.deals.first.completed == false%>
+                <span class="badge bg-warning text-dark">Adicionado ao carrinho</span>
+              <% else %>
+                <span class="badge bg-secondary">Esgotado</span>
+              <% end %>
+            <% end %>
+          <% else %>
+            <div class="d-flex">
+              <% if player.deals == [] %>
+              <%= link_to 'Editar jogador', edit_player_path(player), class: "badge bg-warning text-dark" %>
+                <%= link_to 'Excluir jogador', player_path(player) , method: :delete, data: { confirm: "Deseja confirmar a exlusão?" }, class: "badge bg-danger text-white" %>
+              <% else %>
+                <span class="badge bg-secondary">Jogador comprado</span>
+              <% end %>
+            </div>
+          <% end %>
+
         </div>
       </div>
     </div>

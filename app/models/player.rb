@@ -1,4 +1,5 @@
 class Player < ApplicationRecord
+  has_many :deals
   validates :name, presence: true, uniqueness: true
   validates :position, presence: true
   validates :position, inclusion: ['Goleiro', 'Líbero', 'Lateral Esq.', 'Lateral Dir.',
