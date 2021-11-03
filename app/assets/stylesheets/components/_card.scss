@@ -79,3 +79,11 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+// Card para o show
+
+.card-show img {
+  height: auto;
+  width: 250px;
+  object-fit: cover;
+}
