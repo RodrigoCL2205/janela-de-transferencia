@@ -13,7 +13,11 @@
         <%= image_tag(player.image_url, crop: :fill) %>
       <% end %>
     <div class="card-product-infos">
-      <h2><%= player.name %></h2>
+    <% if user_signed_in? %>
+      <h2><%= link_to player_path(player) do %><%= player.name %><% end %></h2>
+    <% else %>
+      <h2><%= link_to new_user_registration_path do %><%= player.name %><% end %></h2>
+    <% end %>
       <p><%= player.position %>. Idade: <%= player.age.round %> anos. <strong>R$ <%= number_to_human(player.price) %></strong>. Classificação <%= '⭐' * 5 %></p>
     </div>
   </div>
