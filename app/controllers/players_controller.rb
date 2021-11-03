@@ -2,6 +2,11 @@ class PlayersController < ApplicationController
   before_action :find, only: [:show, :edit, :update, :destroy]
 
   def index
+    # Destroi todos os deals de outros usuários que não foram concluídos
+    @deals_not_completed = Deal.where(completed: false)
+    @deals_not_completed.each do |deal|
+      deal.destroy unless deal.user == current_user
+    end
     if params[:query].present?
       @players = Player.search_by_name_and_position_order_by_price(params[:query])
     else
