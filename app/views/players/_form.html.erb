@@ -17,7 +17,12 @@
           <%= f.input :price, label: 'Preço' %>
         </div>
       </div>
-      <div class='form-group my'>
+      <div class="row justify-content-center">
+        <% unless @player.image_url.nil? %>
+          <%= image_tag(@player.image_url, crop: :fill) %>
+        <% end %>
+      </div>
+      <div class='form-group justify-content-center'>
         <%= f.input :photo, as: :file, label: 'Foto'%>
       </div>
       <hr>
