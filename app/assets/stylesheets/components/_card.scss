@@ -82,8 +82,28 @@
 
 // Card para o show
 
+.card-show {
+  overflow: hidden;
+  height: auto;
+  width: 40rem;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  // display: flex;
+  align-items: center;
+}
+
 .card-show img {
   height: auto;
-  width: 250px;
+  width: 300px;
   object-fit: cover;
+  border-radius: 10px;
+}
+
+.show p {
+  font-size: 25px;
+}
+
+.show h3 {
+  font-size: 35px;
+  display: block;
 }
