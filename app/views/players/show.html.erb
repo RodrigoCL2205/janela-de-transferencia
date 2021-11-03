@@ -3,7 +3,7 @@
     <div class="card-img-top justify-content-center m-2 p-2" style="height: auto; width: 300px;">
       <%= link_to player_path(@player) do %>
         <% if @player.image_url.nil? %>
-          <%=  @player.photo.attached? ? (cl_image_tag @player.photo.key, crop: :fill) : image_tag("#{@player.name}.png") %>
+          <%=  @player.photo.attached? ? (cl_image_tag @player.photo.key, crop: :fill) : image_tag("player.png") %>
         <% else %>
           <%= image_tag(@player.image_url, crop: :fill) %>
         <% end %>
