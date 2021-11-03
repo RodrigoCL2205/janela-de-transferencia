@@ -19,7 +19,7 @@
 </div>
 <div class="row justify-content-center cards-player">
   <% @players.each do |player| %>
-    <div class="card-player justify-content-between">
+    <div class="card-player justify-content-start">
       <%= link_to player_path(player) do %>
         <% if player.image_url.nil? %>
           <%=  player.photo.attached? ? (cl_image_tag player.photo.key, crop: :thumb, gravity: :face) : image_tag("player.png") %>
@@ -28,11 +28,11 @@
         <% end %>
       <% end %>
       <div class="card-player-infos justify-content-end text-end">
-        <h3><%= link_to player_path(player) do %><%= player.name %><% end %></h2>
+        <h3><%= link_to player_path(player) do %><%= player.name %><% end %></h3>
         <p>Idade: <%= player.age.to_i %></p>
             <p>Posição: <%= player.position %></p>
         <div class="align-self-end">
-          <h3 class="card-trip-pricing">€ <%= number_to_human(player.price.to_i) %></h2>
+          <h3 class="card-trip-pricing">€ <%= number_to_human(player.price.to_i) %></h3>
           <%# Check if the user is a manager or normal user.  %>
           <% if current_user.manager == false %>
             <%# Check if the player has some deal %>
